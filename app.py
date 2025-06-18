@@ -21,7 +21,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Estado inicial corregido
+# Estado inicial
 if 'brillo' not in st.session_state:
     st.session_state.brillo = 1
 if 'mensajes' not in st.session_state:
@@ -111,6 +111,6 @@ with col2:
     brillo = st.session_state.brillo
     img_path = f"imagenes_deneh/deneh_{brillo}.png"
     if os.path.exists(img_path):
-        st.image(Image.open(img_path), caption="Deneh ahora", use_column_width=True)
+        st.image(Image.open(img_path), caption="Deneh ahora", use_container_width=True)
     else:
-        st.info("Deneh aparecerá aquí cuando envíes un mensaje ✉️")
+        st.warning(f"No se encontró la imagen: {img_path}")
