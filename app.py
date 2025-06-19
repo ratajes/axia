@@ -88,11 +88,10 @@ with col1:
         st.session_state.musica_activa = True
 
     if st.session_state.musica_activa:
-        st.markdown("""
-        <audio autoplay loop controls style='display:none'>
-          <source src="axia_cancion.mp3" type="audio/mpeg">
-        </audio>
-        """, unsafe_allow_html=True)
+      with open("axia_cancion.mp3", "rb") as audio_file:
+         audio_bytes = audio_file.read()
+         st.audio(audio_bytes, format="audio/mp3", start_time=0)
+
 
     mensaje = st.text_input("Tu mensaje para Deneh")
     if st.button("Hablar con Deneh"):
@@ -116,7 +115,7 @@ with col1:
     st.text(f"Mensajes enviados: {st.session_state.mensajes}")
 
     if st.session_state.brillo == 5:
-        st.markdown("<div class='mensaje-final'>🎉 ¡Gracias a vosotros, Deneh ha vuelto a brillar! 🌟</div>", unsafe_allow_html=True)
+        st.markdown("<div class='mensaje-final'>🎉 ¡Gracias a vosotros y vosotras, Deneh ha vuelto a brillar! 🌟</div>", unsafe_allow_html=True)
 
 with col2:
     brillo = st.session_state.brillo
